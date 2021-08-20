@@ -6,12 +6,17 @@ const darken = document.querySelector("#darken");
 const lighten = document.querySelector("#lighten");
 const createGrid = document.querySelector("#createGrid");
 const brushColor = document.querySelector("#brushColor");
+const boardColor = document.querySelector("#boardColor");
 const brushActive = document.querySelector("#board");
-
+const random = document.querySelector("#random");
+const erase = document.querySelector("#erase");
+let pixels;
 painting = false;
-let buttonMode= "normal";
-let colorInput= "#000000";
+let buttonMode = "normal";
 let valueInput;
+
+boardGrid(30);//por default se inicializa con un grid de 30x30
+
 
 function boardGrid(limit){
     let row,col;
@@ -20,40 +25,76 @@ function boardGrid(limit){
             const pixel = document.createElement("div");
             pixel.style.backgroundColor="white";
             pixel.classList.add('pixel');
-            pixel.addEventListener('mouseenter',()=>{
-                if(painting){
-                    pixel.style.backgroundColor= colorInput;
-                }
-            })
             board.appendChild(pixel);
             pixel.style.gridArea= `${row}/${col}`;
         }
     }
+    let everyPixel = Array.from(document.getElementsByClassName("pixel"));
+    everyPixel.forEach(pixel => {pixel.addEventListener('mouseenter', paint)
+    })
+    pixels = everyPixel;
 }
-
 brushActive.addEventListener('click', () => {
     painting = !painting;
+    if(painting){
+        board.style.borderColor= "green";
+    }
+    else{
+        board.style.borderColor= "red";
+    }
     console.log(painting);
 })
 
 function paint(){
-
+    if(painting){
+        switch(buttonMode){
+            case "normal":{
+                this.style.backgroundColor = document.querySelector("#brushColor").value;
+                this.classList.add= "alreadyPainted";
+                break;
+            }
+            case "darken":{
+                this.style.backgroundColor = darkenMode(this);
+                this.classList.add= "alreadyPainted";
+                break;
+            }
+            case "lighten":{
+                this.classList.add= "alreadyPainted";
+                break;
+            }
+            case "random":{
+                this.style.backgroundColor = randomColor();
+                this.classList.add= "alreadyPainted";
+                break;
+            }
+            case "erase":{
+                this.style.backgroundColor = "white";
+                this.classList.remove= "alreadyPainted";
+                break;
+            }
+        }
+    }
 }
 
-function normalMode(colorInput){
-    let pixels = document.querySelectorAll(".pixel");
-    pixels.forEach(pixel =>{
-        pixel.addEventListener('mouseenter',()=>{
-            pixel.style.backgroundColor= `colorInput`;
-        })
-    })
-}
+//Painting functions
 
 function clearBoard(){ //simplemente pinta de blanco los child divs
     let pixels= document.querySelector("#board").childNodes;
     for (let i=0; i<pixels.length; i++){
         pixels[i].style.backgroundColor="white";
     }
+
+}
+
+function darkenMode(pixel){
+    color = pixel.style.backgroundColor;
+    color[1]-=1;
+    color[2]-=9;
+    color[3]-=1;
+    color[4]-=9;
+    color[5]-=1;
+    color[6]-=9;
+    return pixel;
 }
 
 function getInputValue(){
@@ -62,47 +103,43 @@ function getInputValue(){
     boardGrid(valueInput);
 }
 
-function darkenMode(){
-    let pixels= document.querySelectorAll(".pixel");
-    pixels.forEach(pixel =>{
-        pixel.addEventListener('mouseenter',()=>{
-            pixel.style.backgroundColor="black";
-        })
-    })
-}
-
 function lightenMode(){
 
 }
 
-boardGrid(30);//por default se inicializa con un grid de 30x30
+function randomColor(){
+    r = Math.round(Math.random()*255);
+    g = Math.round(Math.random()*255);
+    b = Math.round(Math.random()*255);
+    return 'rgb(' + r + ',' + g + ',' + b + ')'; 
+}
+
+function changeBoardColor(){
+    pixels.forEach(pixel => {
+       if (!(pixel.classList.contains("alreadyPainted"))){
+        pixel.style.backgroundColor = document.querySelector("#boardColor").value;
+    } 
+    })
+    
+}
+//End painting functions
+
 
 //Buttons controls
 normal.addEventListener('click', () => {
     buttonMode = "normal";
-    normalMode(colorInput);
 })
 
 clear.addEventListener('click', () => {
-    if(buttonMode === "clear"){
-        buttonMode="normal";
-        normalMode();
-    }
-    else{
-        buttonMode= "clear";
-        clearBoard();
-    }
-    
+    clearBoard();   
 })
 
 darken.addEventListener('click', () => {
     if(buttonMode === "darken"){
         buttonMode="normal";
-        normalMode();
     }
     else{
         buttonMode = "darken";
-        darkenMode();
     }
      
 })
@@ -110,19 +147,32 @@ darken.addEventListener('click', () => {
 lighten.addEventListener('click', ()=>{
     if(buttonMode === "lighten"){
         buttonMode="normal";
-        normalMode();
     }
     else{
         buttonMode = "lighten";
-        lightenMode();
     }
 })
 
-brushColor.addEventListener('mouseout', () => {
-    console.log("brushColor");
-    colorInput = document.getElementById("brushColor").value;
-    normalMode(colorInput);
+erase.addEventListener('click', () => {
+    if(buttonMode === "erase"){
+        buttonMode="normal";
+    }
+    else{
+        buttonMode = "erase";
+    } 
 })
+
+random.addEventListener('click', () => {
+    if(buttonMode === "random"){
+        buttonMode="normal";
+    }
+    else{
+        buttonMode = "random";
+    }
+})
+
+boardColor.addEventListener('change', changeBoardColor)
+
 createGrid.addEventListener('click', () => {
     getInputValue();
 })
