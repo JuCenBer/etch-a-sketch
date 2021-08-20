@@ -3,9 +3,15 @@ const buttons = document.querySelectorAll("#buttons");
 const normal = document.querySelector("#normal");
 const clear = document.querySelector("#clear");
 const darken = document.querySelector("#darken");
+const lighten = document.querySelector("#lighten");
 const createGrid = document.querySelector("#createGrid");
+const brushColor = document.querySelector("#brushColor");
+const brushActive = document.querySelector("#board");
+
+painting = false;
 let buttonMode= "normal";
-let inputVal;
+let colorInput= "#000000";
+let valueInput;
 
 function boardGrid(limit){
     let row,col;
@@ -15,7 +21,9 @@ function boardGrid(limit){
             pixel.style.backgroundColor="white";
             pixel.classList.add('pixel');
             pixel.addEventListener('mouseenter',()=>{
-                pixel.style.backgroundColor= "darkGrey";
+                if(painting){
+                    pixel.style.backgroundColor= colorInput;
+                }
             })
             board.appendChild(pixel);
             pixel.style.gridArea= `${row}/${col}`;
@@ -23,11 +31,20 @@ function boardGrid(limit){
     }
 }
 
-function normalMode(){
+brushActive.addEventListener('click', () => {
+    painting = !painting;
+    console.log(painting);
+})
+
+function paint(){
+
+}
+
+function normalMode(colorInput){
     let pixels = document.querySelectorAll(".pixel");
     pixels.forEach(pixel =>{
         pixel.addEventListener('mouseenter',()=>{
-            pixel.style.backgroundColor="darkgrey";
+            pixel.style.backgroundColor= `colorInput`;
         })
     })
 }
@@ -40,9 +57,9 @@ function clearBoard(){ //simplemente pinta de blanco los child divs
 }
 
 function getInputValue(){
-    inputVal = document.getElementById("subText").value;
+    valueInput = document.getElementById("subText").value;
     document.getElementById('board').innerHTML = ''; //limpia el innerHTML del board
-    boardGrid(inputVal);
+    boardGrid(valueInput);
 }
 
 function darkenMode(){
@@ -54,12 +71,16 @@ function darkenMode(){
     })
 }
 
+function lightenMode(){
+
+}
+
 boardGrid(30);//por default se inicializa con un grid de 30x30
 
-
+//Buttons controls
 normal.addEventListener('click', () => {
     buttonMode = "normal";
-    normalMode();
+    normalMode(colorInput);
 })
 
 clear.addEventListener('click', () => {
@@ -86,6 +107,23 @@ darken.addEventListener('click', () => {
      
 })
 
+lighten.addEventListener('click', ()=>{
+    if(buttonMode === "lighten"){
+        buttonMode="normal";
+        normalMode();
+    }
+    else{
+        buttonMode = "lighten";
+        lightenMode();
+    }
+})
+
+brushColor.addEventListener('mouseout', () => {
+    console.log("brushColor");
+    colorInput = document.getElementById("brushColor").value;
+    normalMode(colorInput);
+})
 createGrid.addEventListener('click', () => {
     getInputValue();
 })
+//End Buttons Controls
