@@ -50,26 +50,26 @@ function paint(){
         switch(buttonMode){
             case "normal":{
                 this.style.backgroundColor = document.querySelector("#brushColor").value;
-                this.classList.add= "alreadyPainted";
+                this.classList.add("alreadyPainted");
                 break;
             }
             case "darken":{
                 this.style.backgroundColor = darkenMode(this);
-                this.classList.add= "alreadyPainted";
+                this.classList.add("alreadyPainted");
                 break;
             }
             case "lighten":{
-                this.classList.add= "alreadyPainted";
+                this.classList.add("alreadyPainted");
                 break;
             }
             case "random":{
                 this.style.backgroundColor = randomColor();
-                this.classList.add= "alreadyPainted";
+                this.classList.add("alreadyPainted");
                 break;
             }
             case "erase":{
                 this.style.backgroundColor = "white";
-                this.classList.remove= "alreadyPainted";
+                this.classList.remove("alreadyPainted");
                 break;
             }
         }
@@ -79,9 +79,9 @@ function paint(){
 //Painting functions
 
 function clearBoard(){ //simplemente pinta de blanco los child divs
-    let pixels= document.querySelector("#board").childNodes;
     for (let i=0; i<pixels.length; i++){
         pixels[i].style.backgroundColor="white";
+        pixels[i].classList.remove("alreadyPainted");
     }
 
 }
@@ -94,7 +94,7 @@ function darkenMode(pixel){
     color[4]-=9;
     color[5]-=1;
     color[6]-=9;
-    return pixel;
+    return color;
 }
 
 function getInputValue(){
