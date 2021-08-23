@@ -34,6 +34,7 @@ function boardGrid(limit){
     })
     pixels = everyPixel;
 }
+
 brushActive.addEventListener('click', () => {
     painting = !painting;
     if(painting){
@@ -170,6 +171,10 @@ random.addEventListener('click', () => {
         buttonMode = "random";
     }
 })
+
+brushColor.addEventListener('change', () => {
+    buttonMode="normal";
+});
 
 boardColor.addEventListener('change', changeBoardColor)
 
