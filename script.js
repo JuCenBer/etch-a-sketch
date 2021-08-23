@@ -69,7 +69,7 @@ function paint(){
                 break;
             }
             case "erase":{
-                this.style.backgroundColor = "white";
+                this.style.backgroundColor = document.querySelector("#boardColor").value;
                 this.classList.remove("alreadyPainted");
                 break;
             }
