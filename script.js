@@ -23,7 +23,7 @@ function boardGrid(limit){
     for(row=1; row<=limit; row++){
         for(col=1; col<=limit; col++){   
             const pixel = document.createElement("div");
-            pixel.style.backgroundColor="white";
+            pixel.style.backgroundColor= "rgb(255,255,255)";
             pixel.classList.add('pixel');
             board.appendChild(pixel);
             pixel.style.gridArea= `${row}/${col}`;
@@ -43,7 +43,6 @@ brushActive.addEventListener('click', () => {
     else{
         board.style.borderColor= "red";
     }
-    console.log(painting);
 })
 
 function paint(){
@@ -55,11 +54,12 @@ function paint(){
                 break;
             }
             case "darken":{
-                this.style.backgroundColor = darkenMode(this);
+                this.style.backgroundColor = darkenMode(this.style.backgroundColor);
                 this.classList.add("alreadyPainted");
                 break;
             }
             case "lighten":{
+                this.style.backgroundColor = lightenMode(this.style.backgroundColor);
                 this.classList.add("alreadyPainted");
                 break;
             }
@@ -81,21 +81,24 @@ function paint(){
 
 function clearBoard(){ //simplemente pinta de blanco los child divs
     for (let i=0; i<pixels.length; i++){
-        pixels[i].style.backgroundColor="white";
+        pixels[i].style.backgroundColor="rgb(255,255,255)";
         pixels[i].classList.remove("alreadyPainted");
     }
 
 }
 
-function darkenMode(pixel){
-    color = pixel.style.backgroundColor;
-    color[1]-=1;
-    color[2]-=9;
-    color[3]-=1;
-    color[4]-=9;
-    color[5]-=1;
-    color[6]-=9;
-    return color;
+function darkenMode(col){
+    col = col.toString();
+    let rgbStr = col.substring(4, col.length-1)
+         .replace(/ /g, '')
+         .split(',');
+    let R = Math.round(parseInt(rgbStr[0]) - 12.75);
+    console.log(R);
+    let G = Math.round(parseInt(rgbStr[1]) - 12.75);
+    console.log(G);
+    let B = Math.round(parseInt(rgbStr[2]) - 12.75);
+    console.log(B);
+    return "rgb("+R+","+G+","+B+")"
 }
 
 function getInputValue(){
@@ -104,8 +107,18 @@ function getInputValue(){
     boardGrid(valueInput);
 }
 
-function lightenMode(){
-
+function lightenMode(col){
+    col = col.toString();
+    let rgbStr = col.substring(4, col.length-1)
+         .replace(/ /g, '')
+         .split(',');
+    let R = Math.round(parseInt(rgbStr[0]) + 12.75);
+    console.log(R);
+    let G = Math.round(parseInt(rgbStr[1]) + 12.75);
+    console.log(G);
+    let B = Math.round(parseInt(rgbStr[2]) + 12.75);
+    console.log(B);
+    return "rgb("+R+","+G+","+B+")"
 }
 
 function randomColor(){
