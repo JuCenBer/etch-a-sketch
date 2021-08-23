@@ -93,11 +93,8 @@ function darkenMode(col){
          .replace(/ /g, '')
          .split(',');
     let R = Math.round(parseInt(rgbStr[0]) - 12.75);
-    console.log(R);
     let G = Math.round(parseInt(rgbStr[1]) - 12.75);
-    console.log(G);
     let B = Math.round(parseInt(rgbStr[2]) - 12.75);
-    console.log(B);
     return "rgb("+R+","+G+","+B+")"
 }
 
