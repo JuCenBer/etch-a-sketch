@@ -83,8 +83,8 @@ body{
 }
 
 .btnTxt{
-    font-family: 'Cabin Sketch';
-    font-size: 2vw;
+    font-family: 'Righteous';
+    font-size: 25px;
     visibility: hidden;
 }
 
@@ -94,8 +94,10 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    width: 100vw;
-    margin: auto;
+    width: 100%;
+    height: auto;
+    position: relative;
+    left: auto;
 }
 
 #brushColor{
@@ -111,12 +113,13 @@ body{
 }
 
 .button{
+    background-color:rgb(157, 190, 185);
     border-radius: 100px;
     margin-top: 50px;
     border: solid;
     border-color: rgb(41, 127, 135);
-    width: 6vh;
-    height: 6vh;
+    width: 50px;
+    height: 50px;
     min-width: 25px;
     min-height: 25px;
     transition: 0.2s;
@@ -125,29 +128,45 @@ body{
 
 
 .button:hover{
-    color: black;
     border: solid;
     border-color: rgb(255, 196, 0);
-    width: 13vw;
-    height: 6vh;
-}
+    width: 11.5vw;
+    height: 50px;
 
-@media (max-width: 600px) {
-    .button:hover{
-        color: black;
-        border: solid;
-        border-color: rgb(255, 196, 0);
-        width: 15vw;
-        height: 6vh;
-    }
-    
 }
-
 .button:hover .btnTxt{
     animation-name: btnTxtHover;
     animation-duration: 0.2s;
     animation-fill-mode: forwards;
 }
+@media (max-width: 1300px){
+    .btnTxt{
+        font-size:20px;
+    }
+}
+@media (max-width: 1150px){
+    .btnTxt{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 950px) {
+    .btnTxt {
+        font-size: 10px;
+    }
+    .button:hover{
+        border: solid;
+        border-color: rgb(255, 196, 0);
+        margin-top: 40px;
+        width: 60px;
+        height: 60px;
+    }
+    .button:hover .btnTxt{
+        animation-name: none;
+    }
+}
+
+
 
 @keyframes btnTxtHover{
     0%{
