@@ -1,3 +1,4 @@
+const subBody= document.querySelector("#subbody");
 const board = document.querySelector("#board");
 const buttons = document.querySelectorAll("#buttons");
 const normal = document.querySelector("#normal");
@@ -189,9 +190,22 @@ brushColor.addEventListener('change', () => {
     buttonMode="normal";
 });
 
-boardColor.addEventListener('change', changeBoardColor)
+boardColor.addEventListener('change', changeBoardColor);
 
 createGrid.addEventListener('click', () => {
+    subBody.classList.add("focus");
+    board.classList.add("focus");
+    buttons.classList.add("focus");
+    normal.classList.add("focus");
+    clear.classList.add("focus");
+    darken.classList.add("focus");
+    lighten.classList.add("focus");
+    createGrid.classList.add("focus");
+    brushColor.classList.add("focus");
+    boardColor.classList.add("focus");
+    brushActive.classList.add("focus");
+    random.classList.add("focus");
+    erase.classList.add("focus");
     getInputValue();
 })
 //End Buttons Controls

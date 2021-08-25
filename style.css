@@ -4,6 +4,11 @@ body{
     flex-direction: column;
 }
 
+.focus{
+    pointer-events:none;
+    filter: blur(5px);
+}
+
 #Set1{
     display: flex;
     flex-direction: column;
@@ -26,7 +31,7 @@ body{
     background-image: url("brush-icon1.png");
     background-position-x: right;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size:contain;
 }
 
 #darken{
@@ -85,7 +90,7 @@ body{
 .btnTxt{
     font-family: 'Righteous';
     font-size: 25px;
-    visibility: hidden;
+    visibility:collapse;
 }
 
 
@@ -112,7 +117,32 @@ body{
     justify-content: center;
 }
 
+#createGrid{
+    background-image: url("new-icon.png");
+    background-color:black ;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: 4vw;
+    min-height: 50px;
+    width: 4vw;
+    min-width: 50px;
+    background-size: contain;
+    transition: 0.2s;
+}
+
+#createGrid:hover{
+    border: solid;
+    background-image: none;
+    background-color: rgb(157, 190, 185);
+    border-color: rgb(255, 196, 0);
+    width: 15vw;
+    height: 4vw;
+    min-height: 50px;
+    min-width: 50px;
+}
+
 .button{
+    cursor: pointer;
     background-color:rgb(157, 190, 185);
     border-radius: 100px;
     margin-top: 50px;
@@ -164,16 +194,26 @@ body{
     .button:hover .btnTxt{
         animation-name: none;
     }
+
+    #createGrid:hover{
+        background-image: url("new-icon.png");
+        background-color:black ;
+        border: solid;
+        border-color: rgb(255, 196, 0);
+        margin-top: 50px;
+        width: 60px;
+        height: 60px;
+    }
 }
 
 
 
 @keyframes btnTxtHover{
     0%{
-        visibility: hidden;
+        visibility: collapse;
     }
     50%{
-        visibility: hidden;
+        visibility: collapse;
     }
     80%{
         visibility: visible;
