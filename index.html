@@ -4,30 +4,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap" rel="stylesheet">
     <title>Etch-a-Sketch</title>
 </head>
 <body>
     <div id="top">
         <div id="Set1">
-            <div style="margin-right: 5vw;">
+            <div>
                 <input type="color" id="brushColor">
-                <div style="color: white;">
-                    BRUSH
+                    <div style="color: white;">
+                        BRUSH
+                    </div>
+                </input>
+            </div>
+            <div id="Set1Buttons">
+                <div>
+                    <button id="normal" class="button"><div class="btnTxt" style="text-align: left;">NORMAL</div></button>
+                    
                 </div>
-            </input>
-        </div>
+
+                <div>
+                    <button id="darken" class="button"><div class="btnTxt" style="text-align: left;">DARKEN</div></button>
+                </div>
+
+                <div>
+                    <button id="lighten" class="button"><div class="btnTxt" style="text-align: left;">LIGHTEN</div></button>
+                </div>
+                <div>
+                    <button id="random" class="button"><div class="btnTxt" style="text-align: left;">RANDOM</div></button>
+                </div>
+            </div>
+            
+        
         </div>
         <div id="board"></div>  
 
         <div id="Set2">
-            <div style="margin-left: 5vw;">
-                <input type="color" id="boardColor">
+            <div>
+                <input type="color" value="#FFFFFF" id="boardColor">
                 <div style="color: white;">
                     BOARD
                 </div>
             </input>
         </div>
-    </div>
+        <div id="Set2Buttons">
+            <div>
+                <button id="clear" class="button"><div class="btnTxt" style="text-align: right;">CLEAR</div></button>
+            </div>
+ 
+            <div>
+                <button id="erase" class="button"><div class="btnTxt" style="text-align: right;">ERASE</div></button>
+            </div> 
+        </div>
+        
+        </div>
             
     </div>
     
@@ -36,29 +68,7 @@
             <input type="text" id="subText"></input>
             <button type="submit" id="createGrid" class="button">CREATE GRID</button>
         </div>
-            
-        <div>
-            <button id="normal" class="button">NORMAL</button>
-        </div>
-
-       <div>
-           <button id="clear" class="button">CLEAR</button>
-       </div>
-
-        <div>
-           <button id="darken" class="button">DARKEN</button>
-       </div>
-
-       <div>
-           <button id="lighten" class="button">LIGHTEN</button>
-        </div>
-
-        <div>
-            <button id="random" class="button">RANDOM</button>
-        </div>
-        <div>
-            <button id="erase" class="button">ERASE</button>
-        </div>
+      
     </div>
 
     <script src="script.js">

@@ -10,6 +10,7 @@ const boardColor = document.querySelector("#boardColor");
 const brushActive = document.querySelector("#board");
 const random = document.querySelector("#random");
 const erase = document.querySelector("#erase");
+let eraser;
 let pixels;
 painting = false;
 let buttonMode = "normal";
@@ -30,7 +31,7 @@ function boardGrid(limit){
         }
     }
     let everyPixel = Array.from(document.getElementsByClassName("pixel"));
-    everyPixel.forEach(pixel => {pixel.addEventListener('mouseenter', paint)
+    everyPixel.forEach(pixel => {pixel.addEventListener('mouseover', paint)
     })
     pixels = everyPixel;
 }
@@ -69,7 +70,7 @@ function paint(){
                 break;
             }
             case "erase":{
-                this.style.backgroundColor = document.querySelector("#boardColor").value;
+                this.style.backgroundColor = eraser;
                 this.classList.remove("alreadyPainted");
                 break;
             }
@@ -129,7 +130,8 @@ function changeBoardColor(){
     pixels.forEach(pixel => {
        if (!(pixel.classList.contains("alreadyPainted"))){
         pixel.style.backgroundColor = document.querySelector("#boardColor").value;
-    } 
+    }
+    eraser =  document.querySelector("#boardColor").value;
     })
     
 }
@@ -183,6 +185,7 @@ random.addEventListener('click', () => {
 })
 
 brushColor.addEventListener('change', () => {
+    brushColor.style.backgroundColor = document.querySelector("#brushColor").value;
     buttonMode="normal";
 });
 
