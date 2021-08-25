@@ -24,6 +24,7 @@ body{
 
 #newGridSettings{
     display: flex;
+    visibility: collapse;
     flex-direction: column;
     justify-content: center;
     align-items: center;
