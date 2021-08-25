@@ -14,7 +14,7 @@ const boardColor = document.querySelector("#boardColor");
 const brushActive = document.querySelector("#board");
 const random = document.querySelector("#random");
 const erase = document.querySelector("#erase");
-let eraser;
+let eraser = document.querySelector("#boardColor").value;
 let pixels;
 painting = false;
 let buttonMode = "normal";
