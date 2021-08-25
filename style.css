@@ -4,9 +4,74 @@ body{
     flex-direction: column;
 }
 
+#subBody{
+    transition: 0.5s;
+}
+
+#resText{
+    margin-top: 20px;
+    text-align: center;
+    outline: none;
+    border-radius: 100px;
+    border: none;
+    height: 5vh;
+    width: 10vw;
+}
+
+#resText:hover{
+    box-shadow: 0.19px 5px -5px;
+}
+
+#newGridSettings{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border: solid;
+    opacity: 0.9;
+    border-radius: 50px;
+    border-color: rgb(41, 127, 135);
+    height: 50vh;
+    width: 50vw;
+    z-index: 1;
+    left: 25vw;
+    top:30vh;
+    background-color: rgb(157, 190, 185);
+    transition: 0.5s;
+}
+
+#confirmGrid{
+    background-image: url("confirm-icon.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    height: 4vw;
+    min-height: 50px;
+    width: 4vw;
+    min-width: 50px;
+    background-size: contain;
+}
+
+#confirmGrid:hover {
+    border: solid;
+    background-image: none;
+    background-color: rgb(157, 190, 185);
+    border-color: rgb(255, 196, 0);
+    width: 15vw;
+    height: 4vw;
+    min-height: 50px;
+    min-width: 50px;
+}
+
+.unfocus{
+    pointer-events: none;
+    opacity: 0.5;
+    filter: blur(10px);
+}
+
 .focus{
-    pointer-events:none;
-    filter: blur(5px);
+    pointer-events: all;
+    filter: blur(0);
 }
 
 #Set1{
@@ -106,7 +171,13 @@ body{
 }
 
 #brushColor{
-    border-radius: 50%;
+    border-radius: 10px;
+    border: none;
+    height: 4vh;
+}
+
+#boardColor{
+    border-radius: 10px;
     border: none;
     height: 4vh;
 }

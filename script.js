@@ -1,4 +1,7 @@
-const subBody= document.querySelector("#subbody");
+const subBody= document.querySelector("#subBody");
+subBody.classList.add('focus');
+const newGridSettings = document.querySelector("#newGridSettings");
+newGridSettings.style.visibility = 'collapse';
 const board = document.querySelector("#board");
 const buttons = document.querySelectorAll("#buttons");
 const normal = document.querySelector("#normal");
@@ -101,9 +104,15 @@ function darkenMode(col){
 }
 
 function getInputValue(){
-    valueInput = document.getElementById("subText").value;
+    valueInput = document.getElementById("resText").value;
     document.getElementById('board').innerHTML = ''; //limpia el innerHTML del board
     boardGrid(valueInput);
+    newGridSettings.classList.add('unfocus');
+    newGridSettings.style.visibility="hidden";
+    newGridSettings.style.visibility="collapse";
+    subBody.classList.remove('unfocus');
+    subBody.classList.add('focus')
+
 }
 
 function lightenMode(col){
@@ -192,20 +201,11 @@ brushColor.addEventListener('change', () => {
 
 boardColor.addEventListener('change', changeBoardColor);
 
-createGrid.addEventListener('click', () => {
-    subBody.classList.add("focus");
-    board.classList.add("focus");
-    buttons.classList.add("focus");
-    normal.classList.add("focus");
-    clear.classList.add("focus");
-    darken.classList.add("focus");
-    lighten.classList.add("focus");
-    createGrid.classList.add("focus");
-    brushColor.classList.add("focus");
-    boardColor.classList.add("focus");
-    brushActive.classList.add("focus");
-    random.classList.add("focus");
-    erase.classList.add("focus");
-    getInputValue();
-})
+function newGrid(){
+    newGridSettings.classList.remove('unfocus');
+    newGridSettings.classList.remove('focus');
+    subBody.classList.remove('focus');
+    subBody.classList.add('unfocus');
+    newGridSettings.style.visibility="visible";
+}
 //End Buttons Controls
