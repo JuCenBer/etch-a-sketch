@@ -86,7 +86,7 @@ function paint(){
 
 function clearBoard(){ //simplemente pinta de blanco los child divs
     for (let i=0; i<pixels.length; i++){
-        pixels[i].style.backgroundColor="rgb(255,255,255)";
+        pixels[i].style.backgroundColor= document.querySelector("#boardColor").value;
         pixels[i].classList.remove("alreadyPainted");
     }
 
